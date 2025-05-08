@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formue Technical Services LLC</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+        }
+        section {
+            min-height: 100vh;
+            padding: 2rem;
+            position: relative;
+            scroll-snap-align: start;
+        }
+        .navbar {
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        }
+        .navbar.scrolled {
+            background: rgba(30, 60, 114, 0.95);
+        }
+        /* Home Section Styles */
+        .home-slide {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+        }
+        .logo-container {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            background-color: rgba(255, 255, 255, 0.9);
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 60px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        .company-name {
+            font-size: 5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #ffffff, #e0e0e0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .tagline {
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #a3c2ff;
+        }
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 15px;
+            transition: all 0.3s ease;
+        }
+        .service-icon:hover {
+            transform: scale(1.1);
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        .accent-shape {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 100%;
+        }
+        /* About Section Styles */
+        .about-slide {
+            background: linear-gradient(to right, #ffffff, #f0f4ff);
+        }
+        .slide-header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            padding: 1rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .slide-header:after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 200px;
+            height: 100%;
+            background: linear-gradient(to right, transparent, #2a5298);
+        }
+        .blue-accent {
+            color: #1e3c72;
+        }
+        .contact-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            transition: transform 0.3s ease;
+        }
+        .contact-card:hover {
+            transform: translateY(-5px);
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .contact-icon {
+            background-color: #e6eeff;
+            color: #1e3c72;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+        .blue-divider {
+            height: 3px;
+            background: linear-gradient(to right, #1e3c72, transparent);
+            margin: 15px 0;
+            width: 100%;
+        }
+        .company-overview {
+            padding: 20px;
+            background: rgba(30, 60, 114, 0.05);
+            border-left: 4px solid #1e3c72;
+            border-radius: 4px;
+        }
+        /* AMC Section Styles */
+        .amc-slide {
+            background: linear-gradient(to right, #f0f4ff, #ffffff);
+        }
+        .header-bar {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 20px 50px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .header-icon {
+            position: absolute;
+            right: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 3rem;
+            opacity: 0.6;
+        }
+        .benefit-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        .benefit-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
+        .benefit-icon {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            box-shadow: 0 5px 15px rgba(30, 60, 114, 0.3);
+        }
+        .amc-feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 12px;
+            background-color: rgba(30, 60, 114, 0.05);
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .amc-feature:hover {
+            background-color: rgba(30, 60, 114, 0.1);
+        }
+        .feature-icon {
+            color: #1e3c72;
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+        .amc-banner {
+            background: linear-gradient(135deg, rgba(30, 60, 114, 0.05) 0%, rgba(42, 82, 152, 0.08) 100%);
+            border-left: 5px solid #1e3c72;
+            padding: 15px 25px;
+            border-radius: 0 8px 8px 0;
+        }
+        .rotating-gear {
+            position: absolute;
+            color: rgba(30, 60, 114, 0.05);
+            animation: rotate 30s linear infinite;
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        /* Vision & Mission Section Styles */
+        .vision-mission-slide {
+            background: linear-gradient(to right, #ffffff, #f8faff);
+        }
+        .vision-mission-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .vision-mission-card:hover {
+            transform: translateY(-5px);
+        }
+        .card-header {
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            color: white;
+            padding: 15px 25px;
+            display: flex;
+            align-items: center;
+        }
+        .card-content {
+            padding: 25px;
+        }
+        .value-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            padding: 10px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+        .value-item:hover {
+            background-color: rgba(30, 60, 114, 0.05);
+            transform: translateX(5px);
+        }
+        .value-icon {
+            background-color: #1e3c72;
+            color: white;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            box-shadow: 0 4px 10px rgba(30, 60, 114, 0.3);
+        }
+        .bg-pattern {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            opacity: 0.05;
+            z-index: 0;
+            pointer-events: none;
+        }
+        /* Core Services Section Styles */
+        .services-slide {
+            background: linear-gradient(to right, #f0f4ff, #ffffff);
+        }
+        .service-card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+        .service-card:hover .service-icon {
+            transform: rotate(15deg) scale(1.2);
+        }
+        .service-icon-wrapper {
+            height: 90px;
+            width: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            box-shadow: 0 5px 15px rgba(30, 60, 114, 0.3);
+        }
+        .service-icon {
+            font-size: 2.5rem;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .service-highlight {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .service-highlight-icon {
+            color: #1e3c72;
+            margin-right: 10px;
+        }
+        .service-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: #1e3c72;
+            color: white;
+            font-size: 0.7rem;
+            padding: 3px 8px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: bold;
+        }
+        .service-bg-icon {
+            position: absolute;
+            bottom: -15px;
+            right: -15px;
+            font-size: 8rem;
+            color: rgba(30, 60, 114, 0.05);
+            z-index: 0;
+        }
+        /* Industries & Quality Section Styles */
+        .industries-slide {
+            background: linear-gradient(to right, #f8f9ff, #ffffff);
+        }
+        .industry-card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            height: 100%;
+            overflow: hidden;
+        }
+        .industry-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
+        .industry-icon-wrapper {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            height: 100px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .industry-icon {
+            font-size: 3rem;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .industry-card:hover .industry-icon {
+            transform: scale(1.2);
+        }
+        .quality-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.2s ease;
+        }
+        .quality-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        .quality-icon {
+            background-color: #1e3c72;
+            color: white;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+        .badge {
+            display: inline-block;
+            padding: 3px 12px;
+            background-color: #1e3c72;
+            color: white;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        /* Why Choose Formue Section Styles */
+        .why-choose-slide {
+            background: linear-gradient(135deg, #f8faff 0%, #ffffff 100%);
+        }
+        .header-section {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 30px 50px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .header-pattern {
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            width: 30%;
+            opacity: 0.1;
+            background-image: radial-gradient(circle, white 1px, transparent 1px);
+            background-size: 15px 15px;
+        }
+        .benefit-card:hover .benefit-icon {
+            transform: scale(1.1) rotate(10deg);
+        }
+        .card-pattern {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            opacity: 0.05;
+            z-index: 0;
+        }
+        .quote-section {
+            background-color: rgba(30, 60, 114, 0.05);
+            border-left: 5px solid #1e3c72;
+            padding: 20px 30px;
+            border-radius: 0 10px 10px 0;
+            position: relative;
+        }
+        .quote-mark {
+            position: absolute;
+            opacity: 0.1;
+            font-size: 6rem;
+            top: 10px;
+            left: 15px;
+            color: #1e3c72;
+        }
+        .ribbon {
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background-color: #ff5722;
+            color: white;
+            padding: 5px 30px;
+            transform: rotate(45deg);
+            font-size: 0.8rem;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 5;
+        }
+        /* Contact Us Section Styles */
+        .contact-slide {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+        }
+        .contact-header {
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            color: white;
+            padding: 20px 30px;
+            position: relative;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        .contact-item:last-child {
+            border-bottom: none;
+        }
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #1e3c72;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .cta-button {
+            background: linear-gradient(to right, #ff5f6d, #ffc371);
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+            padding: 15px 40px;
+            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            box-shadow: 0 10px 20px rgba(255, 95, 109, 0.4);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(255, 95, 109, 0.5);
+        }
+        .map-container {
+            height: 200px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+        .map-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(30, 60, 114, 0.1);
+            backdrop-filter: blur(2px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+        .animated-pulse {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .dubai-skyline {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background-color: rgba(0, 0, 0, 0.2);
+            z-index: 0;
+        }
+        .skyline-building {
+            position: absolute;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 30px;
+        }
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .company-name { font-size: 3rem; }
+            .tagline { font-size: 1.2rem; }
+            .grid-cols-5 { grid-template-columns: 1fr; }
+            .grid-cols-3 { grid-template-columns: 1fr; }
+            .grid-cols-2 { grid-template-columns: 1fr; }
+            .col-span-3, .col-span-2, .col-span-5, .col-span-7 { grid-column: span 1; }
+            .service-icon { margin: 0 10px; }
+            .navbar ul { flex-direction: column; align-items: center; }
+            .navbar li { margin: 0.5rem 0; }
+        }
+        @media (max-width: 640px) {
+            section { padding: 1rem; }
+            .logo-container { width: 80px; height: 80px; }
+            .contact-card { padding: 15px; }
+            .cta-button { font-size: 1.2rem; padding: 10px 20px; }
+        }
+    </style>
+</head>
+<body class="scroll-snap-y scroll-snap-mandatory">
+    <!-- Navigation Bar -->
+    <nav class="navbar fixed top-0 w-full text-white z-50">
+        <div class="container mx-auto flex justify-between items-center p-4">
+            <a href="#home" class="text-xl font-bold">Formue Technical Services</a>
+            <ul class="flex space-x-6">
+                <li><a href="#home" class="hover:text-blue-400">Home</a></li>
+                <li><a href="#about" class="hover:text-blue-400">About</a></li>
+                <li><a href="#amc" class="hover:text-blue-400">AMC</a></li>
+                <li><a href="#vision-mission" class="hover:text-blue-400">Vision & Mission</a></li>
+                <li><a href="#services" class="hover:text-blue-400">Services</a></li>
+                <li><a href="#industries" class="hover:text-blue-400">Industries</a></li>
+                <li><a href="#why-choose" class="hover:text-blue-400">Why Choose</a></li>
+                <li><a href="#contact" class="hover:text-blue-400">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="home-slide flex flex-col items-center justify-center">
+        <div class="accent-shape" style="width: 500px; height: 500px; bottom: -250px; right: -100px;"></div>
+        <div class="accent-shape" style="width: 300px; height: 300px; top: -100px; left: -100px;"></div>
+        <div class="logo-container">
+            <div class="text-blue-800 font-bold text-4xl">FTS</div>
+        </div>
+        <div class="z-10 text-center px-16">
+            <h1 class="company-name mb-6">FORMUE<br>TECHNICAL SERVICES</h1>
+            <p class="tagline mb-16 font-semibold">Built on Trust, Backed by Service, Driven by Values</p>
+        </div>
+        <div class="flex justify-center mt-8 z-10">
+            <div class="service-icon"><i class="fas fa-snowflake text-4xl text-white"></i></div>
+            <div class="service-icon"><i class="fas fa-bolt text-4xl text-white"></i></div>
+            <div class="service-icon"><i class="fas fa-wrench text-4xl text-white"></i></div>
+            <div class="service-icon"><i class="fas fa-hammer text-4xl text-white"></i></div>
+            <div class="service-icon"><i class="fas fa-paint-roller text-4xl text-white"></i></div>
+        </div>
+        <div class="absolute bottom-8 right-8 bg-white bg-opacity-10 px-4 py-2 rounded-full">
+            <p class="text-white text-sm flex items-center"><i class="fas fa-map-marker-alt mr-2"></i> Dubai, UAE</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-slide">
+        <div class="slide-header">
+            <h1 class="text-4xl font-bold">About Formue Technical Services</h1>
+        </div>
+        <div class="grid grid-cols-5 gap-6 p-10 h-full">
+            <div class="col-span-3">
+                <div class="company-overview">
+                    <h2 class="text-2xl font-bold blue-accent mb-4">Leading Provider of Technical Services</h2>
+                    <div class="text-lg">
+                        <p class="mb-3"><span class="font-semibold">Formue Technical Services LLC</span> delivers comprehensive facilities management and technical maintenance solutions across the UAE.</p>
+                        <div class="blue-divider"></div>
+                        <ul class="list-none space-y-2">
+                            <li class="flex items-center"><i class="fas fa-check-circle blue-accent mr-2"></i><span>End-to-end maintenance for residential, commercial, and industrial properties</span></li>
+                            <li class="flex items-center"><i class="fas fa-check-circle blue-accent mr-2"></i><span>Founded on principles of excellence, reliability, and integrity</span></li>
+                            <li class="flex items-center"><i class="fas fa-check-circle blue-accent mr-2"></i><span>Licensed by the Department of Economic Development in Dubai</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-6 flex justify-center opacity-10 pointer-events-none">
+                    <i class="fas fa-map-marked-alt text-9xl blue-accent"></i>
+                </div>
+            </div>
+            <div class="col-span-2">
+                <div class="contact-card">
+                    <h3 class="text-xl font-bold blue-accent mb-4">Contact Information</h3>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-building"></i></div>
+                        <div><div class="font-semibold">Office Address:</div><div>The Galleries, Aya Business Centre,<br>3rd Floor, Office #362,<br>Jebel Ali, Dubai, UAE</div></div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+                        <div><div class="font-semibold">Phone:</div><div>0585445222 / 0556329516</div></div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                        <div><div class="font-semibold">Email:</div><div>sales@formue.ae</div></div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-globe"></i></div>
+                        <div><div class="font-semibold">Website:</div><div>www.formuetechnical.com</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Annual Maintenance Contracts Section -->
+    <section id="amc" class="amc-slide">
+        <div class="rotating-gear text-9xl" style="top: 100px; right: 100px;"><i class="fas fa-cog"></i></div>
+        <div class="rotating-gear text-8xl" style="bottom: 80px; left: 120px; animation-direction: reverse;"><i class="fas fa-cog"></i></div>
+        <div class="header-bar">
+            <h1 class="text-4xl font-bold">Annual Maintenance Contracts (AMC)</h1>
+            <p class="mt-1 text-lg opacity-90">Year-round, worry-free maintenance for all core systems</p>
+            <div class="header-icon"><i class="fas fa-calendar-check"></i></div>
+        </div>
+        <div class="p-8 grid grid-cols-12 gap-8">
+            <div class="col-span-7">
+                <h2 class="text-3xl font-bold text-blue-900 mb-6">AMC Benefits</h2>
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="benefit-card p-6 flex flex-col items-center text-center">
+                        <div class="benefit-icon"><i class="fas fa-hourglass-half text-2xl"></i></div>
+                        <h3 class="text-xl font-bold text-blue-900 mb-2">Extend Asset Life</h3>
+                        <p class="text-gray-700">Regular maintenance prolongs the lifespan of all your property systems and equipment</p>
+                    </div>
+                    <div class="benefit-card p-6 flex flex-col items-center text-center">
+                        <div class="benefit-icon"><i class="fas fa-tools text-2xl"></i></div>
+                        <h3 class="text-xl font-bold text-blue-900 mb-2">Reduce Downtime</h3>
+                        <p class="text-gray-700">Minimize disruptions through preventative maintenance and quick repairs</p>
+                    </div>
+                    <div class="benefit-card p-6 flex flex-col items-center text-center">
+                        <div class="benefit-icon"><i class="fas fa-coins text-2xl"></i></div>
+                        <h3 class="text-xl font-bold text-blue-900 mb-2">Save Costs</h3>
+                        <p class="text-gray-700">Early issue detection prevents expensive emergency repairs and replacements</p>
+                    </div>
+                    <div class="benefit-card p-6 flex flex-col items-center text-center">
+                        <div class="benefit-icon"><i class="fas fa-headset text-2xl"></i></div>
+                        <h3 class="text-xl font-bold text-blue-900 mb-2">24/7 Support</h3>
+                        <p class="text-gray-700">Optional round-the-clock emergency assistance when you need it most</p>
+                    </div>
+                </div>
+                <div class="amc-banner mt-8">
+                    <p class="text-lg font-bold text-blue-900"><i class="fas fa-star text-yellow-500 mr-2"></i>Customized AMC plans available for properties of all sizes</p>
+                </div>
+            </div>
+            <div class="col-span-5">
+                <h2 class="text-3xl font-bold text-blue-900 mb-6">What's Included</h2>
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <div class="amc-feature"><i class="fas fa-snowflake feature-icon"></i><div><h3 class="font-bold text-lg text-blue-900">AC System Maintenance</h3><p>Regular service, cleaning and performance optimization</p></div></div>
+                    <div class="amc-feature"><i class="fas fa-bolt feature-icon"></i><div><h3 class="font-bold text-lg text-blue-900">Electrical Systems</h3><p>Safety inspections and preventative maintenance</p></div></div>
+                    <div class="amc-feature"><i class="fas fa-faucet feature-icon"></i><div><h3 class="font-bold text-lg text-blue-900">Plumbing Services</h3><p>Leak detection, drain maintenance and fixture checks</p></div></div>
+                    <div class="amc-feature"><i class="fas fa-hammer feature-icon"></i><div><h3 class="font-bold text-lg text-blue-900">General Repairs</h3><p>Carpentry, masonry and structural maintenance</p></div></div>
+                    <div class="amc-feature"><i class="fas fa-clipboard-check feature-icon"></i><div><h3 class="font-bold text-lg text-blue-900">Inspection Reports</h3><p>Detailed documentation and maintenance records</p></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision & Mission Section -->
+    <section id="vision-mission" class="vision-mission-slide">
+        <div class="header-bar">
+            <h1 class="text-4xl font-bold">Vision & Mission</h1>
+        </div>
+        <div class="p-8 grid grid-cols-2 gap-8">
+            <div>
+                <div class="vision-mission-card mb-8">
+                    <div class="card-header"><i class="fas fa-eye text-2xl mr-4"></i><h2 class="text-2xl font-bold">Our Vision</h2></div>
+                    <div class="card-content">
+                        <p class="text-lg">To become the <span class="font-bold blue-text">most trusted name</span> in property maintenance in the UAE by delivering <span class="font-bold blue-text">value-driven services</span> that reflect:</p>
+                        <ul class="list-none mt-4 space-y-2">
+                            <li class="flex items-center"><i class="fas fa-check-circle blue-text mr-2"></i><span>Quality</span></li>
+                            <li class="flex items-center"><i class="fas fa-check-circle blue-text mr-2"></i><span>Consistency</span></li>
+                            <li class="flex items-center"><i class="fas fa-check-circle blue-text mr-2"></i><span>Customer-first principles</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="vision-mission-card">
+                    <div class="card-header"><i class="fas fa-bullseye text-2xl mr-4"></i><h2 class="text-2xl font-bold">Our Mission</h2></div>
+                    <div class="card-content">
+                        <p class="text-lg">To offer <span class="font-bold blue-text">proactive, dependable, and expert</span> technical services that:</p>
+                        <ul class="list-none mt-4 space-y-2">
+                            <li class="flex items-center"><i class="fas fa-check-circle blue-text mr-2"></i><span>Keep homes and businesses running smoothly</span></li>
+                            <li class="flex items-center"><i class="fas fa-check-circle blue-text mr-2"></i><span>Build long-term relationships</span></li>
+                            <li class="flex items-center"><i class="fas fa-check-circle blue-text mr-2"></i><span>Rooted in loyalty, trust, and values</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md relative">
+                <h2 class="text-3xl font-bold blue-text mb-6 flex items-center"><i class="fas fa-star text-yellow-500 mr-3"></i>Core Values</h2>
+                <div class="value-item"><div class="value-icon"><i class="fas fa-handshake text-xl"></i></div><div><h3 class="text-xl font-bold blue-text">Loyalty</h3><p>Earning and honoring client loyalty through trust and dependable service</p></div></div>
+                <div class="value-item"><div class="value-icon"><i class="fas fa-shield-alt text-xl"></i></div><div><h3 class="text-xl font-bold blue-text">Trust</h3><p>Operating with full transparency and a customer-first approach</p></div></div>
+                <div class="value-item"><div class="value-icon"><i class="fas fa-balance-scale text-xl"></i></div><div><h3 class="text-xl font-bold blue-text">Integrity</h3><p>Doing what's right, not what's easy</p></div></div>
+                <div class="value-item"><div class="value-icon"><i class="fas fa-clipboard-check text-xl"></i></div><div><h3 class="text-xl font-bold blue-text">Accountability</h3><p>Standing by our work and taking ownership from start to finish</p></div></div>
+                <div class="value-item"><div class="value-icon"><i class="fas fa-award text-xl"></i></div><div><h3 class="text-xl font-bold blue-text">Excellence</h3><p>Pursuing continuous improvement in every aspect of operations</p></div></div>
+                <div class="bg-pattern"><i class="fas fa-cogs text-9xl"></i></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Technical Services Section -->
+    <section id="services" class="services-slide">
+        <div class="header-bar flex justify-between items-center">
+            <h1 class="text-4xl font-bold">Core Technical Services</h1>
+            <div class="text-lg">Comprehensive solutions for all property needs</div>
+        </div>
+        <div class="p-6">
+            <div class="grid grid-cols-5 gap-5">
+                <div class="service-card p-5">
+                    <div class="service-badge">Most Popular</div>
+                    <div class="service-bg-icon"><i class="fas fa-snowflake"></i></div>
+                    <div class="service-icon-wrapper"><i class="fas fa-snowflake service-icon"></i></div>
+                    <h2 class="text-2xl font-bold text-center text-blue-900 mb-4">AC Services</h2>
+                    <div class="relative z-10">
+                        <div class="service-highlight"><i class="fas fa-check-circle service-highlight-icon"></i><span>AC Maintenance & Repair</span></div>
+                        <div class="service-highlight"><i class="fas fa-check-circle service-highlight-icon"></i><span>AC Coil Cleaning</span></div>
+                        <div class="service-highlight"><i class="fas fa-check-circle service-highlight-icon"></i><span>AC Duct Cleaning</span></div>
+                        <div class="service-highlight"><i class="fas fa-check-circle service-highlight-icon"></i><span>Eco-friendly Methods</span></div>
+                    </div>
+                </div>
+                <div class="service-card p-5">
+                    <div class="service-bg-icon"><i class="fas fa-bolt"></i></div>
+                    <div class="service-icon-wrapper"><i class="fas fa-bolt service-icon"></i></div>
+                    <h2 class="text-2xl font-bold text-center text-blue-900 mb-4">Electrical</h2>
+                    <div class="relative z-10">
+                        <div class="service-highlight"><i class="fas fa-check-circle service-highlight-icon"></i><span>Circuit Diagnosis & Repair</span></div>
+                        <div class="service-highlight"><i class="fas fa-check-circle service-highlight-icon"></i><span>Light Fixture Installation</span></div>
+                        <div class="service-highlight"><i class="fas fa-check-circle service-highlight-icon"></i><span>Breaker Panel Upgrades</span></div>
+                        <div class="service-highlight"><i class="fas fa-check-circle service-highlight-icon"></i><span>Safety Testing & Certification</span></div>
+                    </div>
+                </div>
+                <div class="service-card p-5">
+                    <div class="service-bg-icon"><i class="fas fa-faucet"></i></div>
+                    <div class="service-icon-wrapper"><i class="fas fa-faucet service-icon"></i></div>
+                    <h2 class="text-2xl font-bold text-center text-blue-900 mb-4">Plumbing</h2>
+                    <div class="relative z-10">
+                        <div class="service-highlight"><i class="fas fa-check-circle service-highlight-icon"></i><span>Leak Detection & Repair</span></div>
+                        <div class="service-highlight"><i class="fas fa-check-circle service-highlight-icon"></i><span>Drain Unclogging</span></div>
+                        <div class="service-highlight"><i class="fas fa-check-circle service-highlight-icon"></i><span>Water Tank Cleaning</span></div>
+                        <div class="service-highlight"><i class="fas fa-check-circle service-highlight-icon"></i><span>Pipe & Fixture Installations</span></div>
+                    </div>
+                </div>
+                <div class="service-card p-5">
+                    <div class="service-bg-icon"><i class="fas fa-hammer"></i></div>
+                    <div class="service-icon-wrapper"><i class="fas fa-hammer service-icon"></i></div>
+                    <h2 class="text-2xl font-bold text-center text-blue-900 mb-4">Carpentry</h2>
+                    <div class="relative z-10">
+                        <div class="service-highlight"><i class="fas fa-check-circle service-highlight-icon"></i><span>Custom Shelves & Cabinets</span></div>
+                        <div class="service-highlight"><i class="fas fa-check-circle service-highlight-icon"></i><span>Door & Window Repairs</span></div>
+                        <div class="service-highlight"><i class="fas fa-check-circle service-highlight-icon"></i><span>Furniture Assembly & Repair</span></div>
+                        <div class="service-highlight"><i class="fas fa-check-circle service-highlight-icon"></i><span>Flooring Installation</span></div>
+                    </div>
+                </div>
+                <div class="service-card p-5">
+                    <div class="service-bg-icon"><i class="fas fa-hard-hat"></i></div>
+                    <div class="service-icon-wrapper"><i class="fas fa-hard-hat service-icon"></i></div>
+                    <h2 class="text-2xl font-bold text-center text-blue-900 mb-4">Masonry</h2>
+                    <div class="relative z-10">
+                        <div class="service-highlight"><i class="fas fa-check-circle service-highlight-icon"></i><span>Tiling & Flooring</span></div>
+                        <div class="service-highlight"><i class="fas fa-check-circle service-highlight-icon"></i><span>Concrete Patching</span></div>
+                        <div class="service-highlight"><i class="fas fa-check-circle service-highlight-icon"></i><span>False Ceiling Installation</span></div>
+                        <div class="service-highlight"><i class="fas fa-check-circle service-highlight-icon"></i><span>Plaster & Cladding Works</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-6 bg-white rounded-lg shadow-md p-5 relative overflow-hidden">
+                <div class="grid grid-cols-6 gap-4 items-center">
+                    <div class="col-span-1">
+                        <div class="service-icon-wrapper"><i class="fas fa-paint-roller service-icon"></i></div>
+                    </div>
+                    <div class="col-span-5">
+                        <h2 class="text-2xl font-bold text-blue-900 mb-2">Painting & Decoration</h2>
+                        <div class="grid grid-cols-3 gap-4">
+                            <div class="service-highlight"><i class="fas fa-check-circle service-highlight-icon"></i><span>Interior & Exterior Painting</span></div>
+                            <div class="service-highlight"><i class="fas fa-check-circle service-highlight-icon"></i><span>Decorative & Textured Coatings</span></div>
+                            <div class="service-highlight"><i class="fas fa-check-circle service-highlight-icon"></i><span>Surface Prep & Protection</span></div>
+                            <div class="service-highlight"><i class="fas fa-check-circle service-highlight-icon"></i><span>Waterproofing & Sealants</span></div>
+                            <div class="service-highlight"><i class="fas fa-check-circle service-highlight-icon"></i><span>Wall Paper Fixing</span></div>
+                            <div class="service-highlight"><i class="fas fa-check-circle service-highlight-icon"></i><span>Color Consultation</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute right-0 bottom-0 text-9xl text-blue-100 opacity-20"><i class="fas fa-paint-roller"></i></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industries & Quality Commitment Section -->
+    <section id="industries" class="industries-slide">
+        <div class="header-bar">
+            <h1 class="text-4xl font-bold">Industries Served & Quality Commitment</h1>
+        </div>
+        <div class="p-6 grid grid-cols-2 gap-8">
+            <div>
+                <h2 class="text-3xl font-bold text-blue-900 mb-5 flex items-center"><i class="fas fa-industry mr-3"></i>Industries We Serve</h2>
+                <div class="grid grid-cols-3 gap-4">
+                    <div class="industry-card">
+                        <div class="industry-icon-wrapper"><i class="fas fa-home industry-icon"></i></div>
+                        <div class="p-4 text-center"><h3 class="text-xl font-bold text-blue-900">Residential</h3><p class="text-gray-600">Villas & Apartments</p></div>
+                    </div>
+                    <div class="industry-card">
+                        <div class="industry-icon-wrapper"><i class="fas fa-building industry-icon"></i></div>
+                        <div class="p-4 text-center"><h3 class="text-xl font-bold text-blue-900">Commercial</h3><p class="text-gray-600">Offices & Warehouses</p></div>
+                    </div>
+                    <div class="industry-card">
+                        <div class="industry-icon-wrapper"><i class="fas fa-shopping-cart industry-icon"></i></div>
+                        <div class="p-4 text-center"><h3 class="text-xl font-bold text-blue-900">Retail</h3><p class="text-gray-600">Stores & Shopping Centers</p></div>
+                    </div>
+                    <div class="industry-card">
+                        <div class="industry-icon-wrapper"><i class="fas fa-utensils industry-icon"></i></div>
+                        <div class="p-4 text-center"><h3 class="text-xl font-bold text-blue-900">Hospitality</h3><p class="text-gray-600">Restaurants & Hotels</p></div>
+                    </div>
+                    <div class="industry-card">
+                        <div class="industry-icon-wrapper"><i class="fas fa-graduation-cap industry-icon"></i></div>
+                        <div class="p-4 text-center"><h3 class="text-xl font-bold text-blue-900">Education</h3><p class="text-gray-600">Schools & Universities</p></div>
+                    </div>
+                    <div class="industry-card">
+                        <div class="industry-icon-wrapper"><i class="fas fa-hospital industry-icon"></i></div>
+                        <div class="p-4 text-center"><h3 class="text-xl font-bold text-blue-900">Healthcare</h3><p class="text-gray-600">Clinics & Medical Facilities</p></div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h2 class="text-3xl font-bold text-blue-900 mb-5 flex items-center"><i class="fas fa-award mr-3"></i>Our Quality Commitment</h2>
+                <div class="bg-blue-50 rounded-lg p-6">
+                    <div class="mb-5"><div class="badge mb-3">Quality Assurance Policy</div><p class="text-gray-700">Formue operates under strict standards with regular service audits, standardized processes, and customer feedback mechanisms.</p></div>
+                    <div class="quality-item"><div class="quality-icon"><i class="fas fa-sync-alt"></i></div><div><h3 class="font-bold text-lg text-blue-900">Service Consistency</h3><p class="text-gray-600">Standardized procedures ensure reliable results every time</p></div></div>
+                    <div class="quality-item"><div class="quality-icon"><i class="fas fa-clipboard-check"></i></div><div><h3 class="font-bold text-lg text-blue-900">Regulatory Compliance</h3><p class="text-gray-600">All work meets or exceeds local regulations and standards</p></div></div>
+                    <div class="quality-item"><div class="quality-icon"><i class="fas fa-leaf"></i></div><div><h3 class="font-bold text-lg text-blue-900">Safe & Eco-friendly Practices</h3><p class="text-gray-600">Commitment to environmentally responsible solutions</p></div></div>
+                    <div class="mt-6 bg-white p-4 rounded-lg">
+                        <h3 class="font-bold text-lg text-blue-900 mb-2">Quality Metrics</h3>
+                        <div class="h-48"><canvas id="qualityChart"></canvas></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Formue Section -->
+    <section id="why-choose" class="why-choose-slide">
+        <div class="header-section">
+            <div class="header-pattern"></div>
+            <h1 class="text-4xl font-bold">Why Choose Formue Technical Services LLC</h1>
+            <p class="text-xl mt-2 opacity-90">Your trusted partner for comprehensive facilities management</p>
+        </div>
+        <div class="p-8">
+            <div class="grid grid-cols-3 gap-8">
+                <div class="benefit-card p-6 text-center">
+                    <div class="benefit-icon"><i class="fas fa-dollar-sign"></i></div>
+                    <h2 class="text-2xl font-bold blue-text mb-3">100% Transparent Pricing</h2>
+                    <p class="text-gray-700">No hidden costs or surprise fees. Clear, upfront pricing for all our services.</p>
+                    <div class="card-pattern"><i class="fas fa-calculator text-9xl"></i></div>
+                </div>
+                <div class="benefit-card p-6 text-center">
+                    <div class="benefit-icon"><i class="fas fa-bolt"></i></div>
+                    <h2 class="text-2xl font-bold blue-text mb-3">Fast Response & Delivery</h2>
+                    <p class="text-gray-700">Swift response to service requests with on-time project completion.</p>
+                    <div class="card-pattern"><i class="fas fa-stopwatch text-9xl"></i></div>
+                </div>
+                <div class="benefit-card p-6 text-center">
+                    <div class="ribbon">BESTSELLER</div>
+                    <div class="benefit-icon"><i class="fas fa-tools"></i></div>
+                    <h2 class="text-2xl font-bold blue-text mb-3">All-In-One Provider</h2>
+                    <p class="text-gray-700">Comprehensive solutions for all your maintenance requirements under one roof.</p>
+                    <div class="card-pattern"><i class="fas fa-briefcase text-9xl"></i></div>
+                </div>
+                <div class="benefit-card p-6 text-center">
+                    <div class="benefit-icon"><i class="fas fa-cogs"></i></div>
+                    <h2 class="text-2xl font-bold blue-text mb-3">Customized AMC Plans</h2>
+                    <p class="text-gray-700">Flexible maintenance contracts tailored to your specific needs and budget.</p>
+                    <div class="card-pattern"><i class="fas fa-sliders-h text-9xl"></i></div>
+                </div>
+                <div class="benefit-card p-6 text-center">
+                    <div class="benefit-icon"><i class="fas fa-user-tie"></i></div>
+                    <h2 class="text-2xl font-bold blue-text mb-3">Dedicated Account Manager</h2>
+                    <p class="text-gray-700">Personal point of contact for streamlined communication and service.</p>
+                    <div class="card-pattern"><i class="fas fa-id-card text-9xl"></i></div>
+                </div>
+                <div class="benefit-card p-6 text-center">
+                    <div class="benefit-icon"><i class="fas fa-medal"></i></div>
+                    <h2 class="text-2xl font-bold blue-text mb-3">Satisfaction Guaranteed</h2>
+                    <p class="text-gray-700">Our commitment to your complete satisfaction with every service.</p>
+                    <div class="card-pattern"><i class="fas fa-thumbs-up text-9xl"></i></div>
+                </div>
+            </div>
+            <div class="quote-section mt-8">
+                <div class="quote-mark"><i class="fas fa-quote-left"></i></div>
+                <div class="text-center text-lg italic text-gray-700 px-12">
+                    "Formue Technical Services delivers exceptional maintenance solutions with professionalism and reliability. Their team's expertise and commitment to quality make them our preferred technical service provider in Dubai."
+                </div>
+                <div class="text-right mt-4 pr-12">
+                    <div class="font-bold blue-text">— Satisfied Client</div>
+                    <div class="text-sm text-gray-600">Commercial Property Manager</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Us Section -->
+    <section id="contact" class="contact-slide flex flex-col">
+        <div class="pattern" style="top: 50px; right: 100px; font-size: 15rem;"><i class="fas fa-cogs"></i></div>
+        <div class="pattern" style="bottom: 100px; left: 80px; font-size: 10rem;"><i class="fas fa-tools"></i></div>
+        <div class="dubai-skyline">
+            <div class="skyline-building" style="height: 200px; left: 10%; width: 40px;"></div>
+            <div class="skyline-building" style="height: 300px; left: 15%; width: 20px;"></div>
+            <div class="skyline-building" style="height: 350px; left: 20%;"></div>
+            <div class="skyline-building" style="height: 180px; left: 25%;"></div>
+            <div class="skyline-building" style="height: 400px; left: 40%; width: 35px;"></div>
+            <div class="skyline-building" style="height: 280px; left: 45%;"></div>
+            <div class="skyline-building" style="height: 220px; left: 50%;"></div>
+            <div class="skyline-building" style="height: 320px; left: 60%; width: 45px;"></div>
+            <div class="skyline-building" style="height: 180px; left: 70%;"></div>
+            <div class="skyline-building" style="height: 250px; left: 75%;"></div>
+            <div class="skyline-building" style="height: 300px; left: 85%; width: 50px;"></div>
+        </div>
+        <div class="text-center pt-12 pb-6 z-10">
+            <h1 class="text-5xl font-bold mb-2">Get In Touch</h1>
+            <p class="tagline text-lg">Built on Trust, Backed by Service, Driven by Values</p>
+        </div>
+        <div class="container mx-auto px-8 z-10 flex-1 flex">
+            <div class="grid grid-cols-2 gap-12 items-center w-full">
+                <div class="contact-card">
+                    <div class="contact-header">
+                        <h2 class="text-2xl font-bold">Formue Technical Services LLC</h2>
+                        <p>Your complete facility maintenance partner</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="contact-item">
+                            <div class="contact-icon"><i class="fas fa-map-marker-alt text-xl"></i></div>
+                            <div><div class="text-gray-600 text-sm">OFFICE ADDRESS</div><div class="font-semibold">The Galleries, Aya Business Centre, <br>3rd Floor, Office #362, Jebel Ali, Dubai, UAE</div></div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon"><i class="fas fa-phone-alt text-xl"></i></div>
+                            <div><div class="text-gray-600 text-sm">PHONE</div><div class="font-semibold">0585445222 / 0556329516</div></div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon"><i class="fas fa-envelope text-xl"></i></div>
+                            <div><div class="text-gray-600 text-sm">EMAIL</div><div class="font-semibold">sales@formue.ae</div></div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon"><i class="fas fa-globe text-xl"></i></div>
+                            <div><div class="text-gray-600 text-sm">WEBSITE</div><div class="font-semibold">www.formuetechnical.com</div></div>
+                        </div>
+                    </div>
+                    <div class="map-container">
+                        <div class="flex items-center justify-center h-full bg-blue-900 bg-opacity-10">
+                            <i class="fas fa-map-marked-alt text-6xl text-blue-900 opacity-40"></i>
+                        </div>
+                        <div class="map-overlay">
+                            <div class="bg-blue-900 text-white px-4 py-2 rounded-lg"><i class="fas fa-map-marker-alt mr-2"></i>Dubai, UAE</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center justify-center text-center">
+                    <div class="mb-8">
+                        <h2 class="text-4xl font-bold mb-4">Ready to experience<br>premium technical services?</h2>
+                        <p class="text-xl opacity-80 mb-8">Let's discuss how we can help maintain your property</p>
+                        <a href="#" class="cta-button mb-10 animated-pulse"><i class="fas fa-phone-alt mr-3"></i>Contact Us Today</a>
+                    </div>
+                    <div class="bg-white bg-opacity-20 p-8 rounded-lg backdrop-filter backdrop-blur-sm">
+                        <h3 class="text-2xl font-bold mb-4">Services Available 24/7</h3>
+                        <div class="grid grid-cols-3 gap-4">
+                            <div class="bg-white bg-opacity-20 p-3 rounded-lg"><i class="fas fa-tools text-3xl"></i><div class="mt-2">Emergency Repairs</div></div>
+                            <div class="bg-white bg-opacity-20 p-3 rounded-lg"><i class="fas fa-calendar-check text-3xl"></i><div class="mt-2">Scheduled Maintenance</div></div>
+                            <div class="bg-white bg-opacity-20 p-3 rounded-lg"><i class="fas fa-file-signature text-3xl"></i><div class="mt-2">Free Consultation</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="py-4 text-center z-10"><p class="opacity-70">Licensed by the Department of Economic Development in Dubai</p></div>
+    </section>
+
+    <script>
+        // Smooth scrolling for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Initialize quality metrics chart
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('qualityChart').getContext('2d');
+            const chart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['Service Quality', 'Response Time', 'Technical Expertise', 'Customer Satisfaction', 'Safety Compliance'],
+                    datasets: [{
+                        label: 'Formue Technical Services',
+                        data: [95, 90, 96, 92, 98],
+                        backgroundColor: 'rgba(30, 60, 114, 0.2)',
+                        borderColor: 'rgba(30, 60, 114, 0.8)',
+                        pointBackgroundColor: 'rgba(30, 60, 114, 1)',
+                        pointHoverRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: { stepSize: 20, display: false }
+                        }
+                    },
+                    plugins: { legend: { display: false } }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
